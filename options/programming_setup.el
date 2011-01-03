@@ -433,59 +433,62 @@
 	     )
 	   auto-mode-alist)))
 
-(defun c-lineup-operator-arglist (langelem)
-  "
-This function is much like c-lineup-arglist (in fact most of the code was
-taken right from it).  They both are used in c-offsets-alist to indent code
-within parentheses.  The difference is that this function also allows the
-allignment of expressions with operators at the beginning of lines.  For
-example, the following indentation is supported:
+;;; I no longer use this function.  c-lineup-arglist-intro-after-paren, which
+;;; just places each line right after the opening paren, seems to do what I
+;;; want.
+;; (defun c-lineup-operator-arglist (langelem)
+;;   "
+;; This function is much like c-lineup-arglist (in fact most of the code was
+;; taken right from it).  They both are used in c-offsets-alist to indent code
+;; within parentheses.  The difference is that this function also allows the
+;; allignment of expressions with operators at the beginning of lines.  For
+;; example, the following indentation is supported:
 
-    if (   cond1
-        || cond2
-        || cond3) ...
-"
-  (save-excursion
-    (let* ((containing-sexp
-	    (save-excursion
-	      ;; arglist-cont-nonempty gives relpos ==
-	      ;; to boi of containing-sexp paren. This
-	      ;; is good when offset is +, but bad
-	      ;; when it is c-lineup-arglist, so we
-	      ;; have to special case a kludge here.
-	      (if (memq (car langelem) '(arglist-intro arglist-cont-nonempty))
-		  (progn
-		    (beginning-of-line)
-		    (backward-up-list 1)
-		    (skip-chars-forward " \t" (c-point 'eol)))
-		(goto-char (cdr langelem)))
-	      (point)))
-	   (langelem-col (c-langelem-col langelem t))
-	   (operator-length (save-excursion
-			      (beginning-of-line)
-			      (skip-chars-forward " \t" (c-point 'eol))
-			      (+ (skip-chars-forward "^ \t" (c-point 'eol))
-				 (skip-chars-forward " \t" (c-point 'eol))))))
-      (if (save-excursion
-	    (beginning-of-line)
-	    (looking-at "[ \t]*)"))
-	  (progn (goto-char (match-end 0))
-		 (c-forward-sexp -1)
-		 (forward-char 1)
-		 (c-forward-syntactic-ws)
-		 (- (current-column) langelem-col))
-	(goto-char containing-sexp)
-	(or (eolp)
-	    (not (memq (char-after) '(?{ ?\( )))
-	    (let ((eol (c-point 'eol))
-		  (here (progn
-			  (forward-char 1)
-			  (skip-chars-forward " \t")
-			  (point))))
-	      (c-forward-syntactic-ws)
-	      (if (< (point) eol)
-		  (goto-char here))))
-	(if (< operator-length (- (point) containing-sexp))
-	    (backward-char operator-length))
-	(- (current-column) langelem-col)
-	))))
+;;     if (   cond1
+;;         || cond2
+;;         || cond3) ...
+;; "
+;;   (save-excursion
+;;     (let* ((containing-sexp
+;; 	    (save-excursion
+;; 	      ;; arglist-cont-nonempty gives relpos ==
+;; 	      ;; to boi of containing-sexp paren. This
+;; 	      ;; is good when offset is +, but bad
+;; 	      ;; when it is c-lineup-arglist, so we
+;; 	      ;; have to special case a kludge here.
+;; 	      (if (memq (car langelem) '(arglist-intro arglist-cont-nonempty))
+;; 		  (progn
+;; 		    (beginning-of-line)
+;; 		    (backward-up-list 1)
+;; 		    (skip-chars-forward " \t" (c-point 'eol)))
+;; 		(goto-char (cdr langelem)))
+;; 	      (point)))
+;; 	   (langelem-col (c-langelem-col langelem t))
+;; 	   (operator-length (save-excursion
+;; 			      (beginning-of-line)
+;; 			      (skip-chars-forward " \t" (c-point 'eol))
+;; 			      (+ (skip-chars-forward "^ \t" (c-point 'eol))
+;; 				 (skip-chars-forward " \t" (c-point 'eol))))))
+;;       (if (save-excursion
+;; 	    (beginning-of-line)
+;; 	    (looking-at "[ \t]*)"))
+;; 	  (progn (goto-char (match-end 0))
+;; 		 (c-forward-sexp -1)
+;; 		 (forward-char 1)
+;; 		 (c-forward-syntactic-ws)
+;; 		 (- (current-column) langelem-col))
+;; 	(goto-char containing-sexp)
+;; 	(or (eolp)
+;; 	    (not (memq (char-after) '(?{ ?\( )))
+;; 	    (let ((eol (c-point 'eol))
+;; 		  (here (progn
+;; 			  (forward-char 1)
+;; 			  (skip-chars-forward " \t")
+;; 			  (point))))
+;; 	      (c-forward-syntactic-ws)
+;; 	      (if (< (point) eol)
+;; 		  (goto-char here))))
+;; 	(if (< operator-length (- (point) containing-sexp))
+;; 	    (backward-char operator-length))
+;; 	(- (current-column) langelem-col)
+;; 	))))
