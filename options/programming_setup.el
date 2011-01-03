@@ -23,6 +23,8 @@
 
 (autoload 'cg-mode "cg-mode")
 
+(autoload 'cuda-mode "cuda-mode")
+
 ;; (defadvice java-mode (around call-jde activate compile)
 ;;   "Call jde-mode instead of java-mode."
 ;;   (if running-jde-mode
@@ -337,6 +339,11 @@
 	   nil nil ((?_ . "w")) beginning-of-defun
 	   (font-lock-comment-start-regexp . "/[*/]")
 	   (font-lock-mark-block-function . mark-defun)))
+	(cuda-mode-defaults
+	 '(cuda-keyword-faces
+	   nil nil ((?_ . "w")) beginning-of-defun
+	   (font-lock-comment-start-regexp . "/[*/]")
+	   (font-lock-mark-block-function . mark-defun)))
 	(c++-mode-defaults
 	 '(c++-keyword-faces
 	   nil nil ((?_ . "w") (?~ . "w")) beginning-of-defun
@@ -358,6 +365,7 @@
     (setq font-lock-defaults-alist
 	  (append (list (cons 'c-mode c-mode-defaults)
 			(cons 'cg-mode cg-mode-defaults)
+			(cons 'cuda-mode cuda-mode-defaults)
 			(cons 'c++-mode c++-mode-defaults)
 			(cons 'java-mode java-mode-defaults)
 			;; (cons 'jde-mode java-mode-defaults)
@@ -411,6 +419,7 @@
 	 ("\\.mk$" . makefile-mode)
 	 ("\\.py$" . python-mode)
 	 ("\\.cg$" . cg-mode)
+	 ("\\.cu$" . cuda-mode)
 	 ("CMakeLists\\.txt\\'" . cmake-mode)
 	 ("\\.cmake\\'" . cmake-mode)	 )
        auto-mode-alist))
