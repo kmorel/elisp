@@ -12,9 +12,13 @@
 ;; jde, but that project seems to be outdated.  For now, comment out the
 ;; jde stuff and then resetup Java mode if I need to start using it again.
 ;; (autoload 'jde-mode "jde")
-;; (condition-case e
-;;     (require 'generic-x)
-;;   (error (message "Couldn't load generic-x.")))
+
+;; Load all the generic modes.
+(setq generic-define-mswindows-modes t)
+(setq generic-define-unix-modes t)
+(condition-case e
+    (require 'generic-x)
+  (error (message "Couldn't load generic-x.")))
 
 ;; (defvar running-jde-mode nil)
 ;; (make-variable-buffer-local 'running-jde-mode)
