@@ -29,6 +29,9 @@
 
 (autoload 'cuda-mode "cuda-mode")
 
+(require 'git)
+(require 'git-blame)
+
 ;; (defadvice java-mode (around call-jde activate compile)
 ;;   "Call jde-mode instead of java-mode."
 ;;   (if running-jde-mode
