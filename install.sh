@@ -1,9 +1,8 @@
 #!/bin/sh
 #
 # This is a really simple shell program that un-archives and "installs"
-# some list packages that are required.
-#
-# This does not actually create or touch any files outside this elisp directory.
+# some list packages that are required.  It also attempts to set up
+# your $HOME/.emacs directory.
 #
 
 RUNEMACS=${RUNEMACS:-emacs}
@@ -55,5 +54,48 @@ for dir in $COMPILEDIRS ; do
     echo "    $dir"
     $RUNEMACS -batch -l elisp-dirs.el -f batch-byte-compile $dir/*.el
 done
+
+echo "Setting up .emacs file."
+
+startup_file=$HOME/.emacs
+
+case `uname` in
+    Darwin)
+	config_file=$cwd/init-mac.el
+	;;
+    *)
+	config_file=$cwd/init.el
+	;;
+esac
+
+if [ -f $startup_file ] ; then
+    if fgrep "$config_file" $startup_file > /dev/null ; then
+	:
+    else
+	mv $startup_file $startup_file.old
+	echo "(setq elispdir \"$cwd\")" > $startup_file
+	echo "(load \"$config_file\" nil t)" >> $startup_file
+	echo >> $startup_file
+	cat $startup_file.old >> $startup_file
+
+	echo "#######################################################"
+	echo "Added the following to $startup_file:"
+	echo
+	echo "    (setq elispdir \"$cwd\")"
+	echo "    (load \"$config_file\" nil t)"
+	echo
+	echo "Consider checking the rest of this file to ensure that"
+	echo "the rest of the file is necessary or should not be moved"
+	echo "the tracked configuration."
+	echo
+    fi
+else
+    echo "(setq elispdir \"$cwd\")" > $startup_file
+    echo "(load \"$config_file\" nil t)" >> $startup_file
+
+    echo "#######################################################"
+    echo "Created $startup_file"
+    echo
+fi
 
 echo "Done."
