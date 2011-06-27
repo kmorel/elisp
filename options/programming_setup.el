@@ -23,7 +23,7 @@
 ;; (defvar running-jde-mode nil)
 ;; (make-variable-buffer-local 'running-jde-mode)
 
-(autoload 'python-mode "python-mode")
+(autoload 'python-mode "python")
 
 (autoload 'cg-mode "cg-mode")
 
