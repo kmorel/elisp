@@ -29,6 +29,8 @@
 
 (autoload 'cuda-mode "cuda-mode")
 
+(autoload 'lua-mode "lua-mode")
+
 (require 'git)
 (require 'git-blame)
 
@@ -427,6 +429,7 @@
 	 ("\\.py$" . python-mode)
 	 ("\\.cg$" . cg-mode)
 	 ("\\.cu$" . cuda-mode)
+	 ("\\.lua$" . lua-mode)
 	 ("CMakeLists\\.txt\\'" . cmake-mode)
 	 ("\\.cmake\\'" . cmake-mode)	 )
        auto-mode-alist))
