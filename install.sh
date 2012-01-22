@@ -68,15 +68,15 @@ case `uname` in
 	;;
 esac
 
-if [ -f $startup_file ] ; then
-    if fgrep "$config_file" $startup_file > /dev/null ; then
+if [ -f "$startup_file" ] ; then
+    if fgrep "$config_file" "$startup_file" > /dev/null ; then
 	:
     else
-	mv $startup_file $startup_file.old
+	mv "$startup_file" "$startup_file.old"
 	echo "(setq elispdir \"$cwd\")" > $startup_file
 	echo "(load \"$config_file\" nil t)" >> $startup_file
 	echo >> $startup_file
-	cat $startup_file.old >> $startup_file
+	cat "$startup_file.old" >> $startup_file
 
 	echo "#######################################################"
 	echo "Added the following to $startup_file:"
