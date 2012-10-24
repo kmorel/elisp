@@ -371,7 +371,7 @@
 	(compilation-mode-defaults
 	 '(compilation-keyword-faces t))
 	)
-    (setq font-lock-defaults-alist
+    (setq font-lock-defaults
 	  (append (list (cons 'c-mode c-mode-defaults)
 			(cons 'cg-mode cg-mode-defaults)
 			(cons 'cuda-mode cuda-mode-defaults)
@@ -380,7 +380,7 @@
 			;; (cons 'jde-mode java-mode-defaults)
 			(cons 'html-mode html-mode-defaults)
 			(cons 'Info-mode Info-mode-defaults))
-		  font-lock-defaults-alist))
+		  font-lock-defaults))
     (setq my-html-mode-font-lock-defaults html-mode-defaults)
     (setq my-compilation-mode-font-lock-defaults compilation-mode-defaults))
   (add-hook 'html-mode-hook
