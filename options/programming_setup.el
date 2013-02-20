@@ -31,6 +31,8 @@
 
 (autoload 'lua-mode "lua-mode")
 
+(autoload 'matlab-mode "matlab" "Turn on matlab mode" t)
+
 (require 'git)
 (require 'git-blame)
 
