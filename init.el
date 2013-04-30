@@ -164,8 +164,8 @@
 (custom-set-variables
  '(frame-background-mode (quote dark)))
 
-(set-face-foreground 'modeline "black")
-(set-face-background 'modeline "ivory")
+(set-face-foreground 'mode-line "black")
+(set-face-background 'mode-line "ivory")
 
 (set-face-foreground 'default "ivory")
 (set-face-background 'default "black")
