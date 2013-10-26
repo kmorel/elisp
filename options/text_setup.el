@@ -37,6 +37,7 @@
 (setq auto-mode-alist
       (append
        '(("^README" . text-mode)
+	 ("\\.md$" . text-mode)
 	 ("\\.xml$" . xml-lite-mode)
 	 ("\\.qrc$" . xml-lite-mode)
 	 )
