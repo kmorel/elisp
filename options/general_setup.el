@@ -14,6 +14,9 @@
     (resize-minibuffer-mode)
   )
 
+;Turn off the startup screen
+(setq inhibit-startup-screen t)
+
 ;Disable the creation of list of files that were auto-saved.
 (setq auto-save-list-file-prefix nil)
 
@@ -29,6 +32,10 @@
 
 ;I dislike having the down arrow modifying my document.
 (custom-set-variables '(next-line-add-newlines nil))
+
+;I have gotten into the habit of using one space after a period instead of
+;two.
+(setq sentence-end-double-space nil)
 
 ;Make a functions to tabify and untabify entire buffers (as
 ;opposed to regions)
