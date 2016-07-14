@@ -11,6 +11,11 @@
 (global-set-key [home] 'beginning-of-line)
 (global-set-key [end] 'end-of-line)
 (global-set-key "\C-x\C-b" `electric-buffer-list)
+
+;Allows you to quickly toggle between wrapping words with or without actual
+;newlines.
+(require 'textfun)
+(global-set-key "\C-w" 'toggle-word-wrap-mode)
   
 ;Provides apropos for both functions and variables
 (global-set-key "\C-h\C-a" 'apropos)
