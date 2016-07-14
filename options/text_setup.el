@@ -16,10 +16,12 @@
 	    (chunk-fill-mode 1)))
 
 (require 'one-sentence-per-line)
+(require 'adaptive-wrap)
 (add-hook 'tex-mode-hook
 	  (lambda()
 	    (auto-fill-mode -1)
-	    (one-sentence-per-line-mode 1)))
+	    (one-sentence-per-line-mode 1)
+	    (adaptive-wrap-prefix-mode 1)))
 
 (add-hook 'bibtex-mode-hook
 	  (lambda ()
