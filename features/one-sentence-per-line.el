@@ -19,8 +19,14 @@ perhaps HTML) and has revision control."
 	    map)
 
   (if one-sentence-per-line-mode
-      (visual-line-mode 1)
-    (visual-line-mode -1))
+      (progn (visual-line-mode 1)
+	     (hl-line-mode 1)
+	     ; I use a dark background, so I like a subtle dark highlight
+	     (set-face-background hl-line-face "gray13"))
+    (visual-line-mode -1)
+    ; I generally don't need the line highlighted unless I'm wrapping words
+    ; I like to turn it back off outside of this mode, others might not.
+    (hl-line-mode -1))
   )
 
 (defun one-sentence-per-line-unfill-paragraph ()
