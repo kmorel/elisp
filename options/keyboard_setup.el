@@ -8,8 +8,8 @@
 (global-set-key "\r" 'newline-and-indent)
 (global-set-key "\C-ce" 'eval-current-buffer)
 (global-set-key "\M-g" 'goto-line)
-(global-set-key [home] 'beginning-of-line)
-(global-set-key [end] 'end-of-line)
+(global-set-key [home] 'beginning-of-visual-line)
+(global-set-key [end] 'end-of-visual-line)
 (global-set-key "\C-x\C-b" `electric-buffer-list)
 
 ;Allows you to quickly toggle between wrapping words with or without actual
