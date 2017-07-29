@@ -15,8 +15,8 @@
 
 (setq-default ispell-program-name "/opt/local/bin/aspell")
 
-;; (setcdr (assoc 'font default-frame-alist)
-;; 	"7x13")
+(setcdr (assoc 'font default-frame-alist)
+	"Menlo")
 
 ; I am having troubles with the box cursor: it covers up the character so
 ; that you cannot see it and it leaves annoying "ghosts" behind sometimes.
