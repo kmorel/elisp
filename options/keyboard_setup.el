@@ -12,6 +12,11 @@
 (global-set-key [end] 'end-of-visual-line)
 (global-set-key "\C-x\C-b" `electric-buffer-list)
 
+;Allows you to quickly specify the exact width and height of the current frame.
+(require 'framefun)
+(global-set-key "\C-x5w" 'set-frame-width-interactive)
+(global-set-key "\C-x5h" 'set-frame-height-interactive)
+
 ;Allows you to quickly toggle between wrapping words with or without actual
 ;newlines.
 (require 'textfun)

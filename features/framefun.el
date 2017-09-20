@@ -38,4 +38,30 @@ only remaining frame.
 (global-set-key "\C-x\M-\C-c" 'save-buffers-kill-emacs)
 (global-set-key "\C-x\C-c" 'kill-buffer-delete-frame)
 
+(defun set-frame-width-interactive ()
+  "
+Interactively lets you resize the current frame to a specified
+width. The function will ask for the width in the minibuffer.
+
+The fill-column variable will also be set so that the
+fill-paragraph command continues to fill the available space.
+"
+  (interactive)
+  (set-frame-width (selected-frame)
+		   (read-number "Change to width: " (frame-width))
+		   )
+  (set-fill-column (- (frame-width) 5))
+  )
+
+(defun set-frame-height-interactive ()
+  "
+Interactively lets you resize the current frame to a specified
+height. The function will ask for the height in the minibuffer.
+"
+  (interactive)
+  (set-frame-height (selected-frame)
+		   (read-number "Change to height: " (frame-height))
+		   )
+  )
+
 (provide 'framefun)

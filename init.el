@@ -151,7 +151,7 @@
 ;	    "-*-Monotype.com-normal-r-*-*-11-82-*-*-c-*-*-ansi-")
 (setq default-frame-alist
         '((top . 5) (left . 350)
-          (width . 81) (height . 45)
+          (width . 80) (height . 45)
           (cursor-color . "ivory")
           (cursor-type . box)
           (foreground-color . "ivory")
