@@ -42,10 +42,14 @@
 (autoload 'longlines-mode "longlines"
   "Minor mode for automatically wrapping long lines." t)
 
+(autoload 'gfm-mode "markdown-mode"
+  "Major mode for editing Markdown files (with GitHub-flavored syntax)" t)
+
 (setq auto-mode-alist
       (append
        '(("^README" . text-mode)
-	 ("\\.md$" . text-mode)
+	 ("\\.md$" . gfm-mode)
+	 ("\\.markdown$" . gfm-mode)
 	 ("\\.xml$" . xml-lite-mode)
 	 ("\\.qrc$" . xml-lite-mode)
 	 )
