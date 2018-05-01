@@ -126,6 +126,10 @@
 ;Prevent annoying backup-like files from being created by vc.
 (setq vc-cvs-stay-local nil)
 
+;Auto save after typing 50 characters
+;May want to bump this up if saving is causing noticeable slowdowns.
+(setq auto-save-interval 50)
+
 ;
 ; Startup stuff that should only be run if emacs is first started (not when I
 ; do eval-current-buffer).
