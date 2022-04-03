@@ -37,6 +37,10 @@
 ;two.
 (setq sentence-end-double-space nil)
 
+;I don't like it when emacs auto-indents things with tabs. You get
+;inconsistent spacing because everyone uses different tab widths.
+(setq-default indent-tabs-mode nil)
+
 ;Make a functions to tabify and untabify entire buffers (as
 ;opposed to regions)
 (defun untabify-buffer ()
