@@ -13,7 +13,8 @@
 ; a way similar to cua-mode.
 (global-set-key "\M-z" 'undo)
 
-(setq-default ispell-program-name "/opt/local/bin/aspell")
+;(setq-default ispell-program-name "/opt/local/bin/aspell")
+(setq-default ispell-program-name "/usr/local/bin/aspell")
 
 (setcdr (assoc 'font default-frame-alist)
 	"Menlo")
